@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.yangpf.xdroidmvp.MainActivity">
+
+
+    <EditText
+        android:id="@+id/account1"
+        android:hint="账号"
+        android:layout_width="match_parent"
+        android:layout_height="100px"
+        android:text="1"/>
+    <EditText
+        android:id="@+id/passwprd1"
+        android:hint="mima"
+        android:text="2"
+        android:layout_width="match_parent"
+        android:layout_height="100px"
+        android:layout_below="@+id/account1"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+    <EditText
+        android:id="@+id/ip1"
+        android:hint="ip"
+        android:text="3"
+        android:layout_width="match_parent"
+        android:layout_height="100px"
+        android:layout_below="@+id/passwprd1"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+    <EditText
+        android:id="@+id/port1"
+        android:hint="port"
+        android:text="4"
+        android:layout_width="match_parent"
+        android:layout_height="100px"
+        android:layout_below="@+id/ip1"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+
+</RelativeLayout>
