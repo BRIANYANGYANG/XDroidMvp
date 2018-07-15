@@ -8,20 +8,26 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
 
+import com.orhanobut.logger.Logger;
+import com.whieenz.LogCook;
 import com.yangpf.xdroidmvp.M.DownloadService;
 import com.yangpf.xdroidmvp.M.DownloadUtils;
 import com.yangpf.xdroidmvp.M.JsDownloadListener;
+import com.yangpf.xdroidmvp.utils.ACache;
 
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.droidlover.xdroidmvp.log.XLog;
+import io.reactivex.Observable;
 import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
@@ -38,6 +44,7 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import static android.R.id.message;
+import static android.view.View.X;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -52,6 +59,10 @@ public class MainActivity extends AppCompatActivity {
 
     private OkHttpClient client;
 
+   final String TAG = "MainActivity";
+
+    private int i = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,31 +71,56 @@ public class MainActivity extends AppCompatActivity {
 
 //        asyncGet();
 
+        logTest();
+
+        ACache aCache = ACache.get(this);
+        aCache.put("testkey", "01");
+
+        String a = aCache.getAsString("testkey");
+        Logger.d(TAG+ "*****************************");
+        Logger.d(TAG + a);
+
+        LogCook.d(TAG, a);
+        LogCook.d(TAG, "***********LogCook******************");
+
+
+        Observable.interval(2, 3, TimeUnit.SECONDS)
+                .subscribe(new Consumer<Long>() {
+                    @Override
+                    public void accept(Long aLong) throws Exception {
+                        LogCook.d(TAG, String.valueOf(i++));
+                        Logger.d(TAG + i++);
+
+                    }
+                });
 
 
     }
 
+    private void logTest() {
+        ACache aCache = ACache.get(this);
+        aCache.put("testkey", "01");
+
+        String a = aCache.getAsString("testkey");
+        Logger.d(TAG+ "*****************************");
+        Logger.d(TAG + a);
+
+        LogCook.d(TAG, a);
+        LogCook.d(TAG, "***********LogCook******************");
 
 
+        Observable.interval(2, 3, TimeUnit.SECONDS)
+                .subscribe(new Consumer<Long>() {
+                    @Override
+                    public void accept(Long aLong) throws Exception {
+                        LogCook.d(TAG, String.valueOf(i++));
+                        Logger.d(TAG + i++);
+
+                    }
+                });
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    }
 
 
     /**
