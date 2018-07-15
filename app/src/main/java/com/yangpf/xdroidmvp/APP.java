@@ -9,6 +9,7 @@ import com.orhanobut.logger.DiskLogAdapter;
 import com.orhanobut.logger.FormatStrategy;
 import com.orhanobut.logger.Logger;
 import com.whieenz.LogCook;
+import com.yangpf.xdroidmvp.utils.logtofile.LogUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -45,6 +46,10 @@ public class APP extends Application {
                 .isOpen(true)  //是否开启输出日志
                 .isSave(true)  //是否保存日志
                 .initialize(); //完成初始化Crash监听
+
+        LogUtils.setLogDir(Environment.getExternalStorageDirectory().getAbsolutePath() + "/zlog");
+        LogUtils.setEnable(true);
+
 
     }
 }

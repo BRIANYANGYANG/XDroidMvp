@@ -14,6 +14,7 @@ import com.yangpf.xdroidmvp.M.DownloadService;
 import com.yangpf.xdroidmvp.M.DownloadUtils;
 import com.yangpf.xdroidmvp.M.JsDownloadListener;
 import com.yangpf.xdroidmvp.utils.ACache;
+import com.yangpf.xdroidmvp.utils.logtofile.LogUtils;
 
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
@@ -73,28 +74,6 @@ public class MainActivity extends AppCompatActivity {
 
         logTest();
 
-        ACache aCache = ACache.get(this);
-        aCache.put("testkey", "01");
-
-        String a = aCache.getAsString("testkey");
-        Logger.d(TAG+ "*****************************");
-        Logger.d(TAG + a);
-
-        LogCook.d(TAG, a);
-        LogCook.d(TAG, "***********LogCook******************");
-
-
-        Observable.interval(2, 3, TimeUnit.SECONDS)
-                .subscribe(new Consumer<Long>() {
-                    @Override
-                    public void accept(Long aLong) throws Exception {
-                        LogCook.d(TAG, String.valueOf(i++));
-                        Logger.d(TAG + i++);
-
-                    }
-                });
-
-
     }
 
     private void logTest() {
@@ -115,6 +94,12 @@ public class MainActivity extends AppCompatActivity {
                     public void accept(Long aLong) throws Exception {
                         LogCook.d(TAG, String.valueOf(i++));
                         Logger.d(TAG + i++);
+
+                        for (int j = 0; j< 20; j++) {
+                            LogUtils.i(TAG,"" +   i++);
+                        }
+
+
 
                     }
                 });
